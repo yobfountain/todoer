@@ -1,0 +1,10 @@
+<h2>Admin panel</h2>
+<% if @users.any? %>
+<ul>
+<% @users.each do |user| %>
+	<%= content_tag :li, @user.name %>
+<% end %>
+</ul>
+<% else %>
+<p> There are no active users yet. </p>
+<% end %>

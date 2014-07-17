@@ -1,0 +1,11 @@
+<% unless current_user %>
+	<p id="step-one">What's you name?</p>
+	<%= form_for @user, remote: :true do |f| %>
+		<%= f.text_field :name, placeholder: :name %>
+		<%= f.submit :Boom! %>
+	<% end %>
+<% else %>
+	<p><%= "Welcome #{@user.name}" %> 
+		<br /><%= link_to "clear user", logout_path %>
+	</p>
+<% end %>

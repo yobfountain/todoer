@@ -1,0 +1,31 @@
+<h1>Welcome to ToDoer</h1>
+<p>ToDoer is a simple site that allows you to create and track a task that a group of people must perform (<em>e.g.</em> Exercise Two)
+<h2>Step One!</h2>
+<% unless current_user %>
+	<p id="step-one">Tell us who you are.</p>
+	<%= form_for @user, remote: :true do |f| %>
+		<%= f.text_field :name, placeholder: :name %>
+		<%= f.submit :Boom! %>
+	<% end %>
+<% else %>
+	<p id="step-one">
+		<%= "Welcome #{@user.name}" %> 
+		<br /><%= link_to "clear user", logout_path %>
+	</p>
+<% end %>
+	<h2>Step Two!</h2>
+<p id="step-two">Create a new shared task.</p>
+<%= form_for @task, remote: :true do |f| %>
+	<%= f.text_field :name, placeholder: :"Example: Draw a cat." %>
+	<% unless current_user %>
+	<%= f.submit :Woohoo!, disable_with: "Got it. Thanks.", disabled: :true %>
+	<% else %>
+	<%= f.submit :Woohoo!, disable_with: "Got it. Thanks." %>
+	<% end %>
+<% end %>
+<h2>Step Three!</h2>
+<% if current_user and current_user.tasks.any? %>
+<p id="step-three">Share this link: <%= link_to task_url(current_user.tasks.last), task_url(current_user.tasks.last) %></p>
+<% else %>
+<p id="step-three">Share this link: (link coming soon...)</p>
+<% end %>

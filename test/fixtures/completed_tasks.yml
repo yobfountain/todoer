@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: completed_tasks
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  task_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  task_id: 
+
+two:
+  user_id: 
+  task_id: 
