@@ -67,6 +67,12 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def admin
+    @task = Task.find(params[:id])
+    session[:user_id] = @task.user.id
+    redirect_to task_path(@task)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

@@ -5,7 +5,5 @@
 		<%= f.submit :Boom! %>
 	<% end %>
 <% else %>
-	<p><%= "Welcome #{@user.name}" %> 
-		<br /><%= link_to "clear user", logout_path %>
-	</p>
+	<p><%= "Welcome #{@user.name}" %></p>
 <% end %>

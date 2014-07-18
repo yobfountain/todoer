@@ -1,14 +1,15 @@
-<p id="notice"><%= notice %></p>
+<%= content_tag :div, class: "jumbotron" do %>
 
-<%= content_tag :h1, @task.name %>
-<%= content_tag :p, "#{pluralize @users.size, "person"} working on this task." %> 
-<%= render partial: 'users/greeting' %>
+	<p id="notice"><%= notice %></p>
+	<%= render partial: 'users/greeting' %>
+	<hr />
+	<%= content_tag :h1, @task.name %>
+		<p class="lead">Click the button below when you have completed the task</p>
+	<p><%= link_to 'done', task_complete_path(@task), class: "btn btn-lg btn-success" %></p>
+	<hr />
+	<%= content_tag :p, "#{pluralize @users.size, "person"} working on this task." %> 
 
-<% if @task.user == @user %>
-<%= render partial: 'admin' %>
+	<% if @task.user == @user %>
+	<%= render partial: 'admin' %>
+	<% end %>
 <% end %>
-<p>Click the button below when you have completed the task<p>
-<%= link_to 'done', , class: :button %>
-
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>

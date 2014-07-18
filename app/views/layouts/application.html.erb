@@ -7,8 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+<div class="container">
+	<header>
+		<%= link_to "clear user", logout_path if current_user %>
+		<% if params[:controller] == "tasks" %>
+		| <%= link_to "switch admin", switch_path(@task) %>
+		<% end %>
+	</header>
+	<br />
+	<%= content_tag :div, class: "row" do %>
+		<%= content_tag :div, class: "cold-md-8" do %>
+			<%= yield %>
+		<% end %>
+	<% end %>
+</div>
 </body>
 </html>

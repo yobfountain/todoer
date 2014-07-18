@@ -1,1 +1,1 @@
-$("#step-three").html('Share this link: <%= j link_to task_url @task %>')
+$("#step-three").html('Share this link: <%= j link_to task_url(current_user.tasks.last), task_url(current_user.tasks.last) %>')
