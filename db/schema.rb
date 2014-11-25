@@ -11,14 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141001194537) do
+ActiveRecord::Schema.define(version: 20141009181726) do
+
+  create_table "lists", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "lists", ["user_id"], name: "index_lists_on_user_id"
 
   create_table "tasklings", force: true do |t|
     t.integer  "user_id"
     t.integer  "task_id"
-    t.boolean  "completed"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status"
   end
 
   add_index "tasklings", ["task_id"], name: "index_tasklings_on_task_id"
@@ -27,10 +37,13 @@ ActiveRecord::Schema.define(version: 20141001194537) do
   create_table "tasks", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.boolean  "completed"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status"
+    t.integer  "list_id"
   end
+
+  add_index "tasks", ["list_id"], name: "index_tasks_on_list_id"
 
   create_table "users", force: true do |t|
     t.string   "name"

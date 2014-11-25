@@ -1,4 +1,4 @@
-<% unless current_user %>
+<% unless user_signed_in? %>
 	<p id="step-one">What's you name?</p>
 	<%= form_for @user, remote: :true do |f| %>
 		<%= f.text_field :name, placeholder: :name %>

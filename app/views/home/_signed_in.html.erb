@@ -1,0 +1,22 @@
+<% if current_user.lists.any? %>
+	<%= content_tag :h1, 'Your lists' %>
+	<ul>
+	<% current_user.lists.each do |list| %>
+		<li><%= link_to list.name, list %></li>
+	<% end %>
+</ul>
+<% end %>
+<h1><%= current_user.name %>'s To Do List</h1>
+
+<ul>
+<% current_user.tasklings.each do |taskling| %>
+	<li>
+		<span class="btn btn-xs btn-success"><%= taskling.print_status %></span>
+		<%= taskling.task.name %>  
+		<% unless @task.user == @user %>
+		<%= link_to "I'm done", taskling_path(taskling, taskling:{status:3}), method: :patch, class: "btn btn-xs btn-success" %>
+		<%= link_to "I'm stuck", taskling_path(taskling, taskling:{status:2}), method: :patch, class: "btn btn-xs btn-warning" %>
+		<% end %>
+	</li>	
+<% end %>
+<ul>

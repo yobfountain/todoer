@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Todoer</title>
+  <title>ToDoer</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="container">
+<div id="content">
 	<header>
-		<%= link_to "clear user", logout_path if current_user %>
-		<% if params[:controller] == "tasks" %>
-		| <%= link_to "switch admin", switch_path(@task) %>
-		<% end %>
+		<nav>
+		<%= render 'shared/login' %>
+		<%= render 'shared/switcher' %>
+		</nav>
 	</header>
-	<br />
-	<%= content_tag :div, class: "row" do %>
-		<%= content_tag :div, class: "cold-md-8" do %>
-			<%= yield %>
+	<%= content_tag :div, class: :main do %>
+		<% if notice %>
+			<br />
+			<div id="notice" class="alert alert-success alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<%= notice %>
+			</div>
 		<% end %>
+		<%= yield %>
 	<% end %>
 </div>
 </body>

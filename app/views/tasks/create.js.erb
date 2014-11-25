@@ -1,1 +1,2 @@
-$("#step-three").html('Share this link: <%= j link_to task_url(current_user.tasks.last), task_url(current_user.tasks.last) %>')
+$("#task_name").val('')
+$("#task-list").append('<li><%= j @task.name %> <% if current_user == @task.user %>| <%= show_status_action @task %> <% end %></li>')

@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
 
-  devise_for :users
-  resources :tasks do
-  	post :complete
+  resources :lists do
+    resources :tasks
   end
+  resources :tasklings, only: [:create, :update, :destroy]
+  get 'switch_user', to: 'switch_user#set_current_user'
+  devise_for :users
   resources :users
-  get 'logout', to: 'users#logout'
-  get 'switch/:id', to: 'users#admin', as: "switch"
   root 'home#index'
 end

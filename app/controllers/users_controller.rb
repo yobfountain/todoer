@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :switch]
 
   def index
     @users = User.all
@@ -57,8 +57,15 @@ class UsersController < ApplicationController
 
   def admin
     @task = Task.find(params[:id])
-    session[:user_id] = @task.user.id
+    sign_out current_user
+    sign_in(:user, @task.user)
     redirect_to task_path(@task)
+  end
+
+  def switch
+    sign_out current_user
+    sign_in(:user, @user) 
+    redirect_to root_path
   end
 
   private

@@ -1,0 +1,32 @@
+<%= content_tag :h1 do %>
+	<%= @list.name %>
+	<%= content_tag :small, "created by #{@list.user.name}" %>
+<% end %>
+<%= content_tag :p, @list.description, class: :lead %>
+
+<% if current_user == @list.user %>
+	<%= form_for [@list, @task], remote: true, role: :form do |f| %>
+		<%= content_tag :div, class: "input-group" do %>
+			<%= f.text_field :name, class: "form-control", placeholder: "Add a new task here!" %>
+			<span class="input-group-btn">
+			<%= f.submit 'Go!', class: "btn btn-default" %>
+			</span>
+		<% end %>
+	<% end %>
+<% end %>
+<%= content_tag :h3, 'Current Tasks' %>
+<div class="list-container">
+	<ol id="task-list">
+	<% @list.tasks.each do |task| %>
+		<li><%= task.name %>
+			<% if current_user == task.user %>
+			| <%= show_status_action task %> 
+			<% else %>
+			| <%# link_to 'accept task', %>
+			<% end %>
+		</li>
+	<% end %>
+</ol>
+</div>
+<%= link_to 'Edit', edit_list_path(@list) %> |
+<%= link_to 'Back', lists_path %>

@@ -5,9 +5,9 @@
 #  id         :integer          not null, primary key
 #  name       :string(255)
 #  user_id    :integer
-#  completed  :boolean
 #  created_at :datetime
 #  updated_at :datetime
+#  status     :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

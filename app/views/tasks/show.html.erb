@@ -3,13 +3,15 @@
 	<p id="notice"><%= notice %></p>
 	<%= render partial: 'users/greeting' %>
 	<hr />
-	<%= content_tag :h1, @task.name %>
-		<p class="lead">Click the button below when you have completed the task</p>
-	<p><%= link_to 'done', task_complete_path(@task), class: "btn btn-lg btn-success" %></p>
+	<%= content_tag :h1 do %>
+	<%= @task.name %>
+		<% unless @task.user == @user %>
+		<%= link_to 'I\'m done', task_complete_path(@task), class: "btn btn-lg btn-success" %>
+		<%= link_to 'I\'m stuck', task_complete_path(@task), class: "btn btn-lg btn-warning" %>
+		<% end %>
+	<% end %>
 	<hr />
-	<%= content_tag :p, "#{pluralize @users.size, "person"} working on this task." %> 
-
 	<% if @task.user == @user %>
-	<%= render partial: 'admin' %>
+	<%= render 'admin' %>
 	<% end %>
 <% end %>

@@ -31,6 +31,7 @@ group :development do
 	gem 'annotate'
 	gem 'meta_request'
 	gem 'sqlite3'
+	gem 'switch_user'
 end
 
 group :production do 
