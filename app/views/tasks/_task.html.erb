@@ -1,0 +1,18 @@
+<% if task.status != 0 or task.user == current_user %>
+	<li>
+		<% if current_user == task.user %>
+		<%= task.name %>
+		| <%= show_task_action task %>
+		<%= link_to 'x', list_task_path(task.list, task), method: :delete %> 
+		<% elsif task.taskling_for(current_user) %>
+		<% taskling = task.taskling_for(current_user) %>
+		<span class="btn btn-xs btn-success"><%= taskling.print_status %></span>
+		 <%= task.name %>
+		| <%= show_taskling_action taskling %> 
+		<%# link_to "I'm done", taskling_path(taskling, taskling:{status:3}), method: :patch, class: "btn btn-xs btn-success" %>
+		<%# link_to "I'm stuck", taskling_path(taskling, taskling:{status:2}), method: :patch, class: "btn btn-xs btn-warning" %>
+		<% else %>
+		<%= task.name %>
+		<% end %>
+	</li>
+<% end %>  

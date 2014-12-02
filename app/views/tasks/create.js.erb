@@ -1,2 +1,2 @@
 $("#task_name").val('')
-$("#task-list").append('<li><%= j @task.name %> <% if current_user == @task.user %>| <%= show_status_action @task %> <% end %></li>')
+$("#task-list").append('<%= j render @task %>')

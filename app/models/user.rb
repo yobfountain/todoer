@@ -28,4 +28,6 @@ class User < ActiveRecord::Base
 	has_many :tasks
 	has_many :tasklings
 	has_many :lists
+	has_many :subscriptions
+	has_many :subs, through: :subscriptions, source: :list
 end

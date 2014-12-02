@@ -8,7 +8,7 @@ class TasklingsController < ApplicationController
   	@taskling = Taskling.find(params[:id])
   	respond_to do |format|
       if @taskling.update(params.require(:taskling).permit(:status))
-        format.html { redirect_to root_path, notice: 'Task was successfully updated.' }
+        format.html { redirect_to @taskling.task.list, notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }

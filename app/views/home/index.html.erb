@@ -1,5 +1,8 @@
 <% if user_signed_in? %>
 	<%= render 'signed_in' %>
 <% else %>
-	<h1>Sign up or Sign in</h1>
+	<h1>Welcome to ToDoer</h1>
+	<p>ToDoer is a simple way to create, share and administer to do lists.</p>
+	<p><%= link_to "Sign in", new_user_session_path %> or 
+	<%= link_to 'sign up', new_user_registration_path %> to get started.</p>
 <% end %>

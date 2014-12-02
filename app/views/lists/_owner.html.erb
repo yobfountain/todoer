@@ -1,0 +1,15 @@
+<%= form_for [@list, @task], remote: true, role: :form do |f| %>
+	<%= content_tag :div, class: "input-group" do %>
+		<%= f.text_field :name, class: "form-control", placeholder: "Add a new task here!" %>
+		<span class="input-group-btn">
+		<%= f.submit 'Go!', class: "btn btn-default" %>
+		</span>
+	<% end %>
+<% end %>
+<br />
+<div class="list-container">
+	<%= render @tasks %>
+</div>
+<br />
+<%= link_to 'Edit', edit_list_path(@list) %> |
+<%= link_to 'Back', lists_path %>

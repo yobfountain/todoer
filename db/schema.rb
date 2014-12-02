@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141009181726) do
+ActiveRecord::Schema.define(version: 20141125194031) do
 
   create_table "lists", force: true do |t|
     t.integer  "user_id"
@@ -22,6 +22,11 @@ ActiveRecord::Schema.define(version: 20141009181726) do
   end
 
   add_index "lists", ["user_id"], name: "index_lists_on_user_id"
+
+  create_table "subscriptions", id: false, force: true do |t|
+    t.integer "list_id", null: false
+    t.integer "user_id", null: false
+  end
 
   create_table "tasklings", force: true do |t|
     t.integer  "user_id"

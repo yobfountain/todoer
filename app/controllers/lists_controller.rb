@@ -1,10 +1,18 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: [:join, :show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:show]
+  before_action :set_list, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:show, :join]
 
   def join
-    # if user has not joined this list
-    # create tasklings for each item on list for current user
+    @list = List.find(params[:list_id])
+    if @list and current_user
+        if current_user.subs.include?(@list)
+          redirect_to @list, notice: 'You\'ve already joined this list.' 
+        else
+          @list.users << current_user
+          @list.create_tasklings_for(current_user)
+          redirect_to @list, notice: 'You have been subscribed to this list.'
+        end
+    end
   end
 
   def index
@@ -13,6 +21,7 @@ class ListsController < ApplicationController
 
   def show
     @task = Task.new
+    @tasks = @list.tasks
   end
 
   def new

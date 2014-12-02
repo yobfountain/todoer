@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :lists do
+  	post :join
     resources :tasks
   end
   resources :tasklings, only: [:create, :update, :destroy]
