@@ -50,7 +50,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to list_path(@task.list), notice: 'Task was successfully destroyed.' }
+      format.html { redirect_to list_path(@task.list), notice: 'Task was successfully removed.' }
       format.json { head :no_content }
     end
   end

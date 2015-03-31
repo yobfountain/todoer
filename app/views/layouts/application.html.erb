@@ -8,13 +8,18 @@
 </head>
 <body>
 <div id="content">
-	<header>
-		<nav>
-		<%= render 'shared/login' %>
-		<%= render 'shared/switcher' %>
+	<header class="navbar">
+		<div class="container">
+		<%= link_to 'ToDoer', root_path, class: "navbar-brand" %>
+		<nav class="navbar-right">
+			<ul class="nav nav-pills">
+				<%= render 'shared/admin' %>
+				<%= render 'shared/login' %>
+			</ul>
 		</nav>
+	</div>
 	</header>
-	<%= content_tag :div, class: :main do %>
+	<%= content_tag :main, role: :main do %>
 		<% if notice %>
 			<br />
 			<div id="notice" class="alert alert-success alert-dismissible" role="alert">
@@ -25,5 +30,6 @@
 		<%= yield %>
 	<% end %>
 </div>
+	<footer class="footer"><div class="container"><%= render 'shared/switcher' %></div></footer>
 </body>
 </html>

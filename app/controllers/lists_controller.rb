@@ -22,6 +22,10 @@ class ListsController < ApplicationController
   def show
     @task = Task.new
     @tasks = @list.tasks
+    respond_to do |format|
+        format.html
+        format.js
+    end
   end
 
   def new

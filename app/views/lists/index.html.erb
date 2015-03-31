@@ -1,9 +1,10 @@
-<h1>Lists</h1>
-<%= link_to 'New List', new_list_path %>
+<h1>Your Lists</h1>
 <hr />
+  <ul>
   <% @lists.each do |list| %>
       <li>
-        <%= link_to list.name, list %> (<%= link_to list.user.name, list.user %>)
+        <%= link_to list.name, list, class: "lead" %> (<%= link_to list.user.name, list.user %>)
       </li>
   <% end %>
+  </ul>
 

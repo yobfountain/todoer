@@ -1,6 +1,8 @@
 <% if user_signed_in? %>
-<%= link_to "sign out #{current_user.name}", destroy_user_session_path, :method => :delete %> 
+	<li>
+		<%= link_to "sign out #{current_user.name}", destroy_user_session_path, :method => :delete %>
+	</li> 
 <% else %>
-	<%= link_to "sign in", new_user_session_path %> | 
-	<%= link_to 'sign up', new_user_registration_path %>
+	<li><%= link_to "sign in", new_user_session_path %></li> 
+	<li><%= link_to 'sign up', new_user_registration_path %></li>
 <% end %>

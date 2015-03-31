@@ -1,0 +1,8 @@
+<% if user_signed_in? %>
+		<li>
+			<%= link_to 'your lists', lists_path, class: "nav-link" %>
+		</li>
+		<li>
+			<%= link_to 'new list', new_list_path, class: "nav-link" %>
+		</li>
+<% end %>

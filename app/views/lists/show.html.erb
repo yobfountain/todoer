@@ -9,9 +9,9 @@
 <% end %>
 
 <% if @list.users.include? current_user %>
-	<%= render 'subscribed' %>
+	<%= render @list %>
 <% elsif @list.user == current_user %>
 	<%= render 'owner' %>
 <% else %>
-	<%= render 'unsubscribed' %>
+	<%= render @list %>
 <% end %>

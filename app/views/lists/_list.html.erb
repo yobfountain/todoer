@@ -1,0 +1,4 @@
+<%= content_tag :div, class: "list-container", data: {url: list_path(list, format: :js)} do %>
+	<li>
+	<%= render @tasks %>
+<% end %>
