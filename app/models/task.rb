@@ -33,7 +33,11 @@ class Task < ActiveRecord::Base
 	end
 
 	def percent_complete
-		(self.tasklings.where(status: 3).size.to_f / self.tasklings.size.to_f) * 100
+		if tasklings.any?
+			(tasklings.where(status: 3).size.to_f / tasklings.size.to_f) * 100
+		else
+			0
+		end
 	end
 
 end
