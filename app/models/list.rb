@@ -15,11 +15,21 @@ class List < ActiveRecord::Base
   has_many :tasks
   has_many :subscriptions
   has_many :users, through: :subscriptions
+  after_create :generate_code
 
   def create_tasklings_for(user)
   	self.tasks.each do |task|
   		Taskling.create(user: user, task: task, status: 1)
   	end
+  end
+
+  def generate_code
+    code = SecureRandom.urlsafe_base64(6)
+    while List.exists?(code: code) do
+      code = SecureRandom.urlsafe_base64(6)
+    end
+    
+    update code: code
   end
 
 end

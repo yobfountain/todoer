@@ -3,7 +3,7 @@ class ListsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :join]
 
   def join
-    @list = List.find(params[:list_id])
+    @list = List.find_by(code: params[:list_id])
     if @list and current_user
         if current_user.subs.include?(@list)
           redirect_to @list, notice: 'You\'ve already joined this list.' 
@@ -12,11 +12,16 @@ class ListsController < ApplicationController
           @list.create_tasklings_for(current_user)
           redirect_to @list, notice: 'You have been subscribed to this list.'
         end
+    elsif current_user
+      redirect_to root_path, notice: 'That list no longer exists.'
+    else 
+      authenticate_user!
     end
   end
 
   def index
     @lists = current_user.lists
+    @subscribed_lists = current_user.subs
   end
 
   def show
@@ -38,21 +43,17 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
 
-    respond_to do |format|
       if @list.save
-        format.html { redirect_to @list, notice: 'List was successfully created.' }
-        format.json { render :show, status: :created, location: @list }
+        redirect_to list_path(@list.code), notice: 'List was successfully created.'
       else
-        format.html { render :new }
-        format.json { render json: @list.errors, status: :unprocessable_entity }
+        render :new
       end
-    end
   end
 
   def update
     respond_to do |format|
       if @list.update(list_params)
-        format.html { redirect_to @list, notice: 'List was successfully updated.' }
+        format.html { redirect_to list_path(@list.code), notice: 'List was successfully updated.' }
         format.json { render :show, status: :ok, location: @list }
       else
         format.html { render :edit }
@@ -72,7 +73,10 @@ class ListsController < ApplicationController
   private
 
     def set_list
-      @list = List.find(params[:id])
+      @list = List.find_by(code: params[:id])
+      unless @list
+        redirect_to root_path, alert: "That list no longer exists."
+      end
     end
 
     def list_params

@@ -3,7 +3,7 @@
 	<hr />
 	<% current_user.lists.each do |list| %>
 		<div class="list">
-			<h3><%= link_to list.name, list %></h3>
+			<h3><%= link_to list.name, list_path(list.code) %></h3>
 			<div class="list-container">
 			<% list.tasks.each do |task| %>
 				<%= render partial: 'tasks/task', locals: {task: task} %>

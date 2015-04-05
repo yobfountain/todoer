@@ -5,7 +5,7 @@
 <%= content_tag :p, @list.description, class: :lead %>
 
 <% if @list.users.exclude? current_user and @list.user != current_user %>
-<%= link_to 'subscribe to this list', list_join_path(@list), method: :post, class: "btn btn-default" %>
+<%= link_to 'subscribe to this list', list_join_path(@list.code), method: :post, class: "btn btn-default" %>
 <% end %>
 
 <% if @list.users.include? current_user %>

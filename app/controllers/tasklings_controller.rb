@@ -1,9 +1,5 @@
 class TasklingsController < ApplicationController
 
-  def create
-    #@taskling = Tasklin.new
-  end
-
   def update
   	@taskling = Taskling.find(params[:id])
   	respond_to do |format|

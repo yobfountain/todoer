@@ -1,9 +1,19 @@
-<h1>Your Lists</h1>
+<h1>Lists you own</h1>
 <hr />
   <ul>
   <% @lists.each do |list| %>
       <li>
-        <%= link_to list.name, list, class: "lead" %> (<%= link_to list.user.name, list.user %>)
+        <%= link_to list.name, list_path(list.code), class: "lead" %>
+      </li>
+  <% end %>
+  </ul>
+
+<h1>Subscribed Lists</h1>
+<hr />
+  <ul>
+  <% @subscribed_lists.each do |list| %>
+      <li>
+        <%= link_to list.name, list_path(list.code), class: "lead" %> (<%= list.user.name %>)
       </li>
   <% end %>
   </ul>

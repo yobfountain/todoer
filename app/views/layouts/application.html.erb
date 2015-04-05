@@ -8,11 +8,11 @@
 </head>
 <body>
 <div id="content">
-	<header class="navbar">
+	<header>
 		<div class="container">
-		<%= link_to 'ToDoer', root_path, class: "navbar-brand" %>
+		<%= link_to 'ToDoer', root_path, id: "logo" %>
 		<nav class="navbar-right">
-			<ul class="nav nav-pills">
+			<ul>
 				<%= render 'shared/admin' %>
 				<%= render 'shared/login' %>
 			</ul>
@@ -27,9 +27,16 @@
 				<%= notice %>
 			</div>
 		<% end %>
+		<% if alert %>
+			<br />
+			<div id="alert" class="alert alert-warning alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<%= alert %>
+		</div>
+		<% end %>
 		<%= yield %>
 	<% end %>
 </div>
-	<footer class="footer"><div class="container"><%= render 'shared/switcher' %></div></footer>
+	<footer class="footer"><div class="container"><%= render 'shared/switcher' if Rails.env.development? %></div></footer>
 </body>
 </html>

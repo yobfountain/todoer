@@ -1,7 +1,9 @@
 <% if task.status != 0 or task.user == current_user %>
 	<li>
 		<% if current_user == task.user %>
-			<%= task.name %>
+			<span class="glyphicon glyphicon-triangle-right"></span>
+			<%= task.name %> | 
+			<%= number_to_percentage(task.percent_complete, precision: 0) %> <span> complete</span>
 			<div class="task-status">
 				<%= show_task_action task %>
 				<%= link_to list_task_path(task.list, task), method: :delete do %>
@@ -18,7 +20,7 @@
 			<%# link_to "I'm stuck", taskling_path(taskling, taskling:{status:2}), method: :patch, class: "btn btn-xs btn-warning" %>
 		<% else %>
 		
-		<%= task.name %>
+			<%= task.name %>
 		
 		<% end %>
 	</li>
