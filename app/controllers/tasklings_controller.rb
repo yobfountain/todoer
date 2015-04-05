@@ -4,7 +4,7 @@ class TasklingsController < ApplicationController
   	@taskling = Taskling.find(params[:id])
   	respond_to do |format|
       if @taskling.update(params.require(:taskling).permit(:status))
-        format.html { redirect_to @taskling.task.list }
+        format.html { redirect_to list_path(@taskling.task.list.code) }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }

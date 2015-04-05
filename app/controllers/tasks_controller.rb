@@ -25,7 +25,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save
         @task.update_list
-        format.html { redirect_to list_path(@task.list), notice: 'Task was successfully created.' }
+        format.html { redirect_to list_path(@task.list.code), notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
         format.js
       else
@@ -38,7 +38,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to list_path(@task.list), notice: 'Task was successfully updated.' }
+        format.html { redirect_to list_path(@task.list.code), notice: 'Task was successfully updated.' }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
@@ -50,7 +50,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to list_path(@task.list), notice: 'Task was successfully removed.' }
+      format.html { redirect_to list_path(@task.list.code), notice: 'Task was successfully removed.' }
       format.json { head :no_content }
     end
   end
@@ -61,6 +61,7 @@ class TasksController < ApplicationController
     end
 
     def task_params
-      params.require(:task).permit(:name, :status).merge(list_id: params[:list_id])
+      list = List.find_by(code: params[:list_id])
+      params.require(:task).permit(:name, :status).merge(list_id: list.id)
     end
 end
