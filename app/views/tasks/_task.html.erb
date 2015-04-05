@@ -6,7 +6,7 @@
 			<%= number_to_percentage(task.percent_complete, precision: 0) %> <span> complete</span>
 			<div class="task-status">
 				<%= show_task_action task %>
-				<%= link_to list_task_path(task.list, task), method: :delete do %>
+				<%= link_to list_task_path(task.list.code, task), method: :delete do %>
 					<span class="glyphicon glyphicon-remove"></span> 
 				<% end %>
 			</div>
