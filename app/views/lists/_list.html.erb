@@ -1,4 +1,4 @@
-<%= content_tag :div, class: "list-container", data: {url: list_path(list, format: :js)} do %>
+<%= content_tag :div, class: "list-container", data: {url: list_path(list.code, format: :js)} do %>
 	<li>
 	<%= content_tag :li, "This list has #{list.users.length} subscribers." %>
 	<%= render @tasks %>

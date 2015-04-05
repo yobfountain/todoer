@@ -1,2 +1,2 @@
 $("#task_name").val('')
-$(".list-container").append('<%= j render @task %>')
+$('.list-container').html("<%= j render partial: 'lists/insert', locals: {list: @task.list, tasks: @tasks } %>")

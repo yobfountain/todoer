@@ -47,11 +47,11 @@ main {
 	color: red;
 }
 
-.footer { position: absolute;
-  bottom: 0;
+.footer {
+  position: bottom; 
   width: 100%;
   padding: 1em;
-  /* Set the fixed height of the footer here */
+  margin-top: 2em;
   height: 60px;
   background-color: #f5f5f5;
 }

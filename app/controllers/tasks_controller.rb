@@ -25,8 +25,8 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save
         @task.update_list
+        @tasks = @task.list.tasks
         format.html { redirect_to list_path(@task.list.code), notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @task }
         format.js
       else
         format.html { render :new }

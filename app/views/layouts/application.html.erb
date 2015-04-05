@@ -37,6 +37,8 @@
 		<%= yield %>
 	<% end %>
 </div>
-	<footer class="footer"><div class="container"><%= render 'shared/switcher' if Rails.env.development? %></div></footer>
+	<% if Rails.env.development? %> 
+	<footer class="footer"><div class="container"><%= render 'shared/switcher' %></div></footer>
+	<% end %>
 </body>
 </html>
